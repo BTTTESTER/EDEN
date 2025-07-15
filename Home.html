@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edens Ritter Grenze Characters</title>
+  <style>
+    * {
+      font-family: 'Times New Roman', Times, serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url(https://github.com/BTTTESTER/EDEN/blob/main/Dark.png?raw=true) no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(30, 30, 30);
+      padding: 10px 20px;
+      z-index: 1000;
+      gap: 20px;
+	  box-shadow: 0 4px 10px rgba(0, 0, 0, 1.5);
+    }
+
+    .logo-container {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .wiki-title {
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.5em;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .search-bar {
+      display: none;
+    }
+
+    .search-icon-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon-container img {
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+    }
+
+    .floating-search {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(30,30,30,0.95);
+      padding: 10px 20px;
+      border-radius: 10px;
+      z-index: 1001;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    .floating-search input {
+      max-width: 100%;
+      width: 100%;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      color: white;
+      background-color: rgba(40,40,40);
+      text-align: center;
+    }
+
+    .floating-search input::placeholder {
+      color: white;
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    header {
+      position: relative;
+      background-image: url(https://github.com/BTTTESTER/EDEN/blob/main/GameBG.png?raw=true);
+      background-size: cover;
+      background-position: top;
+      color: white;
+      padding: 120px 20px 40px;
+      text-align: center;
+      z-index: 999;
+      transition: transform 0.4s ease;
+    }
+
+    header.hidden {
+      transform: translateY(-100%);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 6em;
+      z-index: 1;
+      padding-bottom: 10px;
+      position: relative;
+    }
+
+    main {
+      max-width: 1600px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgb(30,30,30);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color: white;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .footer-section {
+      flex: 1 1 30%;
+      max-width: 800px;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 5px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      header {
+        padding: 100px 20px 30px;
+      }
+	  
+	  .top-bar {
+        padding: 1px 20px;
+      }
+
+      .logo-container {
+        width: 50px;
+        height: 50px;
+      }
+
+      .wiki-title {
+        display: none;
+      }
+
+      header h1 {
+        font-size: 2.5em;
+        padding-bottom: 20px;
+      }
+
+      .nav-links a {
+        font-size: 1.2em;
+      }
+
+      .floating-search {
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+      }
+	  
+	  .floating-search input {
+		width: 60vw;
+		max-width: none;
+	  }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+		align-items: center;
+      }
+
+      .footer-section {
+        flex: 1 1 100%;
+		max-width: 100%;
+      }
+    }
+
+    /* Desktop Styles - Align floating search to the right */
+    @media (min-width: 769px) {
+      .floating-search {
+        top: 70px;
+        right: 20px;
+        left: auto;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Nav and Search -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="https://github.com/BTTTESTER/EDEN/blob/main/Logo.png?raw=true" alt="ERG Logo" />
+    </div>
+    <div class="wiki-title">Edens Ritter Grenze Characters</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="Characters.html">Characters</a>
+    </div>
+    <!-- Search icon instead of full input -->
+    <div class="search-icon-container">
+      <img src="https://github.com/BTTTESTER/EDEN/blob/main/Magnify.png?raw=true" alt="Search" class="search-icon" />
+    </div>
+  </div>
+
+  <!-- Header that hides on scroll -->
+  <header id="mainHeader">
+    <h1>Edens Ritter Grenze<br>Characters</h1>
+  </header>
+
+  <!-- Floating Search Box -->
+  <div class="floating-search" id="floatingSearch">
+    <input type="text" placeholder="Search Not Available Yet" disabled />
+    <br />
+    <button class="close-btn" id="closeSearch">Close</button>
+  </div>
+
+  <!-- Body Content -->
+  <main>
+    <!-- User comment preserved -->
+    <h2 style="color: rgb(255,0,0); font-size: 2.0em">Warning!</h2>
+    <p style="color: rgb(255,0,0); font-size: 2.0em;">
+      This site contains adult contents intended for adults only (18+). If you are viewing this site, that means you confirm that you are of legal age and willing to view mature and explicit content. If you are underage, please leave immediately.
+    </p>
+  </main>
+
+  <section style="max-width: 1600px; margin: 20px auto; padding: 20px; background-color: rgb(40,40,40); color: white;">
+    <h2>What is this all about?</h2>
+    <p>
+      This is a fan made character wiki for the japanese game Edens Ritter Grenze made by me and my good ol' friend Chatgpt! This wiki will focus only on playable characters, their visual, character lore, skill description etc. No main story or event descriptions, no build recommendations, no enemy descriptions, no tactics or anything, just a simple character introduction and their skill descriptions. Do what you can with these informations, I'm sorry.
+    </p>
+	<p>
+	  What to know when choosing characters to use? Just think of those old RPG game mechanics! Red beats Green, Green beats Blue, Blue Beats Red while Light and Dark beats up each other!
+	</p>
+  </section>
+
+  <section style="max-width: 1600px; margin: 20px auto; padding: 20px; background-color: rgb(40,40,40); color: white;">
+    <h2>Characters Update</h2>
+    <p>
+      I will be adding last the collab characters, as I know the majority of us playing or those new to the game, won't be having them easily. Either we pulled for them in the past and failed, so no way to get them anymore, or you missed it for playing the game late. I will be focusing on characters that you can surely obtain in the game permanently, even those who only appears from time to time.
+    </p>
+  </section>
+
+  <!-- Footer with two horizontal/stacked sections -->
+  <footer class="footer">
+    <div class="footer-section footer-contact">
+      <h3>Contact me:</h3>
+      <p>Email: BoyTotoy69420@gmail.com</p>
+      <p>Twitter: I don't use one.</p>
+      <p>Facebook: I don't use one.</p>
+      <p>Youtube: I don't use one.</p>
+    </div>
+
+    <div class="footer-section footer-disclaimer">
+      <h3>Disclaimer:</h3>
+      <p>
+        This site is not affiliated with or officially endorsed by Waffle or the creators of Edens Ritter Grenze.
+        All characters, images, and trademarks belong to their respective owners. This is a fan-made resource intended for
+        informational and community purposes only. Viewer discretion is advised due to mature content.
+      </p>
+    </div>
+
+    <div class="footer-section footer-JPLink">
+      <h3>JP Unofficial Game Wiki:</h3>
+      <p>
+        <a href="https://edensgrenze.wikiru.jp/" style="color: #ccc; text-decoration: underline;">
+        Edens Ritter Grenze Unofficial Japanese Wiki
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scroll and Floating Search Scripts -->
+  <script>
+    // Hide/show header on scroll
+    let lastScrollTop = 0;
+    const header = document.getElementById("mainHeader");
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        header.classList.add("hidden");
+      } else {
+        header.classList.remove("hidden");
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    // Floating search toggle
+    const searchIcon = document.querySelector('.search-icon');
+    const floatingSearch = document.getElementById('floatingSearch');
+    const closeSearch = document.getElementById('closeSearch');
+
+    searchIcon.addEventListener('click', () => {
+      floatingSearch.style.display = 'block';
+    });
+
+    closeSearch.addEventListener('click', () => {
+      floatingSearch.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
