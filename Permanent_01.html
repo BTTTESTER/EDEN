@@ -15,6 +15,7 @@
       padding: 0;
       background: url(https://github.com/BTTTESTER/EDEN/blob/main/Dark.png?raw=true) no-repeat center center fixed;
       background-size: cover;
+	  overflow-x: hidden;
     }
 
     .top-bar {
@@ -282,7 +283,7 @@
     max-width: 100%;
   }
   
-  #Lucifer_btn {
+  #Name_btn {
     display: block;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
@@ -366,14 +367,14 @@
         flex: 0 0 50%;
       }
 
-      #Lucifer {
+      #IMG {
         width: 400px;
       }
       #defeat-drop {
         background-color: transparent;
       }
 	  
-	  #lu_description {
+	  #DD_description {
        display: flex;
        align-items: center;
        justify-content: center;
@@ -392,7 +393,7 @@
     flex: 0 0 50%;
   }
 
-  #Lucifer {
+  #IMG {
     height: 600px;
     max-width: 600px;
   }
@@ -407,7 +408,7 @@
     display: flex;
   }
 
-  .Lucifer_5 {
+  .IMG_container {
     display: block;
     margin-left: -10%;
     width: 600px;
@@ -423,14 +424,14 @@
     background-color: transparent;
   }
 
-  #Lucifer_btn {
+  #Name_btn {
     text-align: center;
   }
 
-  #lu_description {
+  #DD_description {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     text-align: center;
   }
 }
@@ -443,7 +444,7 @@
         flex: 0 0 50%;
       }
 
-      #Lucifer {
+      #IMG {
         height: 800px;
         max-width: 800px;
       }
@@ -458,7 +459,7 @@
         display: flex;
       }
 
-      .Lucifer_5 {
+      .IMG_container {
          display: block;
         margin-left: -20%;
         width: 800px;
@@ -474,13 +475,13 @@
         background-color: transparent;
       }
 
-      #Lucifer_btn {
+      #Name_btn {
         text-align: center;
       }
-      #lu_description {
+      #DD_description {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         text-align: center;
       }
     }
@@ -542,19 +543,23 @@
 
   <section style="max-width: 1600px; margin: 20px auto; padding: 20px; background-color: transparent; color: white;">
     <!-- Dropdown 1 -->
-    <button class="dropdown-btn full-width" id="Lucifer_btn" style="color: yellow; font-size: 2.5em">Lucifer</button>
-    <div class="dropdown-content full-width" id="lu_description">
-      <p>This is content for Character 1. You can add text, images, or links here.</p>
+    <button class="dropdown-btn full-width" id="Name_btn" style="color: yellow; font-size: 2.5em">Lucifer</button>
+    <div class="dropdown-content full-width" id="DD_description">
+      <p>Attribute:<span style="color: yellow;">Divine Light</span></p>
+	  <p>Rarity: ★★★★★</p>
+	  <p>Weapon Type: Spear</p>
+	  <p>Position: Vanguard</p>
+	  <p>Cost: 40</p>
     </div>
 
     <!-- Character image + description in two sections -->
     <div class="character-block">
       <!-- Left section -->
-<div class="Lucifer_5">
+<div class="IMG_container">
         <img 
           src="https://raw.githubusercontent.com/BTTTESTER/EDEN-IMG/refs/heads/main/Permanent_5_Lucifer.png" 
           alt="Character Image" 
-          id="Lucifer"
+          id="IMG"
         />
       </div>
       <!-- Right section -->
@@ -589,6 +594,9 @@
     <button class="dropdown-btn full-width">Lvl 5 Skills</button>
     <div class="dropdown-content full-width">
       <p>Details about level 5 skills go here.</p>
+	  <p>Details about level 5 skills go here.</p>
+	  <p>Details about level 5 skills go here.</p>
+	  <p>Details about level 5 skills go here.</p>
     </div>
   </section>
 
@@ -654,7 +662,7 @@
     document.querySelectorAll('.dropdown-btn.full-width').forEach(btn => {
       btn.addEventListener('click', () => {
         const content = btn.nextElementSibling;
-        content.style.display = (content.style.display === "block") ? "none" : "block";
+        content.style.display = (content.style.display === "flex") ? "none" : "flex";
       });
     });
   </script>
