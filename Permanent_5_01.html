@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5★ Permanent Lucifer</title>
+  <style>
+    * {
+      font-family: 'Times New Roman', Times, serif;
+      box-sizing: border-box;
+    }
+	
+    .dropdown-content.full-width {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+	
+	#Skills {
+      display: flex;
+      flex-direction: column;  /* stack vertically */
+      align-items: flex-start; /* left-align text */
+      gap: 8px;                /* space between lines */
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: url(https://github.com/BTTTESTER/EDEN/blob/main/Dark.png?raw=true) no-repeat center center fixed;
+      background-size: cover;
+	  overflow-x: hidden;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(30, 30, 30);
+      padding: 10px 20px;
+      z-index: 1000;
+      gap: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 1.5);
+    }
+
+    .logo-container {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .wiki-title {
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.5em;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .search-bar {
+      display: none;
+    }
+
+    .search-icon-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon-container img {
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+    }
+
+    .floating-search {
+      display: none;
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(30,30,30,0.95);
+      padding: 10px 20px;
+      border-radius: 10px;
+      z-index: 1001;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    .floating-search input {
+      max-width: 100%;
+      width: 100%;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      color: white;
+      background-color: rgba(40,40,40);
+      text-align: center;
+    }
+
+    .floating-search input::placeholder {
+      color: white;
+    }
+
+    .close-btn {
+      margin-top: 10px;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    header {
+      position: relative;
+      background-image: url(https://github.com/BTTTESTER/EDEN/blob/main/GameBG.png?raw=true);
+      background-size: cover;
+      background-position: top;
+      color: white;
+      padding: 120px 20px 40px;
+      text-align: center;
+      z-index: 999;
+      transition: transform 0.4s ease;
+    }
+
+    header.hidden {
+      transform: translateY(-100%);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 6em;
+      z-index: 1;
+      padding-bottom: 10px;
+      position: relative;
+    }
+
+    main {
+      max-width: 1600px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgb(30,30,30);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color: white;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .footer-section {
+      flex: 1 1 30%;
+      max-width: 800px;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 5px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+  header {
+    padding: 100px 20px 30px;
+  }
+
+  /* Character block stacked vertically on mobile */
+  .character-block {
+    flex-direction: column; /* stack image and text */
+    align-items: center;    /* center horizontally */
+    gap: 20px;              /* maintain spacing */
+  }
+
+  .character-section {
+    flex: none;             /* prevent stretching */
+    width: 100%;            /* full width container */
+    max-width: 400px;       /* optional max width */
+    text-align: center;     /* center image horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .character-section img {
+    width: 100%;            /* responsive width */
+    max-width: 400px;       /* optional limit */
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .character-section:not(:has(img)) {
+    align-items: flex-start; /* keep text left-aligned */
+    text-align: left;
+    padding: 0 10px;
+  }
+
+  .character-section p {
+    margin: 10px 0;
+  }
+
+  .character-section:last-child {
+    max-width: 600px;       /* text width limit */
+    padding: 0 20px;
+  }
+
+  .top-bar {
+    padding: 1px 20px;
+  }
+
+  .logo-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .wiki-title {
+    display: none;
+  }
+
+  header h1 {
+    font-size: 2.5em;
+    padding-bottom: 20px;
+  }
+
+  .nav-links a {
+    font-size: 1.2em;
+  }
+
+  .floating-search {
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+
+  .floating-search input {
+    width: 60vw;
+    max-width: none;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-section {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  
+  #Name_btn {
+    display: block;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  .dropdown-content.full-width {
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    gap: 10px; /* spacing between lines */
+  }
+
+}
+
+    /* Desktop Styles - Align floating search to the right */
+    @media (min-width: 769px) {
+      .floating-search {
+        top: 70px;
+        right: 20px;
+        left: auto;
+        transform: none;
+      }
+    }
+
+    /* --- Character-specific styles --- */
+    .dropdown-btn.full-width, 
+    .dropdown-content.full-width {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      background-color: rgb(30,30,30);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      text-align: left;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-bottom: 1px solid #555;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .dropdown-btn.full-width:hover {
+      background-color: rgb(30,30,30);
+    }
+
+    .dropdown-content.full-width {
+      display: none;
+      background-color: rgb(30,30,30);
+      border-bottom: 2px solid #666;
+      padding: 12px 20px;
+      font-size: 1em;
+    }
+
+    .character-block {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: flex;
+      gap: 20px;
+      color: white;
+      flex-wrap: wrap; /* mobile default */
+    }
+
+    .character-section {
+      flex: 1 1 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .character-section img {
+      max-width: 800px;
+      max-height: 800px;
+      width: auto;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* Phone size */
+    @media only screen and (max-width: 900px) {
+      .character-block {
+        flex-wrap: nowrap; /* no stacking */
+      }
+      .character-section {
+        flex: 0 0 50%;
+      }
+
+      #IMG {
+        width: 400px;
+      }
+      #defeat-drop {
+        background-color: transparent;
+      }
+	  
+	  #DD_description {
+       display: flex;
+       text-align: center;
+      }
+
+      #DD_description p{
+        display: block;
+        margin-bottom: -10px;
+      }
+	  
+    }
+    
+    /* 💻 Laptop Styles */
+@media (min-width: 1024px) and (max-width: 1919px) {
+  .character-block {
+    flex-wrap: nowrap; /* side-by-side */
+  }
+
+  .character-section {
+    flex: 0 0 50%;
+  }
+
+  #IMG {
+    height: 600px;
+    max-width: 600px;
+  }
+
+  #description {
+    margin-top: 0%;
+    margin-left: 3%;
+    text-align: left;
+  }
+
+  #character-section {
+    display: flex;
+  }
+
+  .IMG_container {
+    display: block;
+    margin-left: -10%;
+    width: 600px;
+  }
+
+  #defeat-img {
+    height: 600px;
+    max-width: 600px;
+    margin-left: 0%;
+  }
+
+  #defeat-drop {
+    background-color: transparent;
+  }
+
+  #Name_btn {
+    text-align: center;
+  }
+
+  #DD_description {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+  }
+  
+  .dropdown-content.full-width {
+    flex-direction: row; /* side by side */
+    justify-content: center;
+    flex-wrap: wrap; /* wrap to next line if too long */
+    gap: 30px; /* wider spacing */
+  }
+
+  .dropdown-content.full-width p {
+    margin: 0; /* remove top/bottom margins */
+  }
+
+  
+}
+
+    @media (min-width: 1920px) and (max-width: 2560px){
+      .character-block {
+        flex-wrap: nowrap; /* no stacking */
+      }
+      .character-section {
+        flex: 0 0 50%;
+      }
+
+      #IMG {
+        height: 800px;
+        max-width: 800px;
+      }
+
+      #description {
+        margin-top: 0%;
+        margin-left: 5%;
+        text-align: left;
+      }
+
+      #character-section {
+        display: flex;
+      }
+
+      .IMG_container {
+         display: block;
+        margin-left: -20%;
+        width: 800px;
+      }
+
+      #defeat-img {
+        height: 800px;
+        max-width: 800px;
+        margin-left: 0%;
+
+      }
+      #defeat-drop {
+        background-color: transparent;
+      }
+
+      #Name_btn {
+        text-align: center;
+      }
+      #DD_description {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+      }
+    }
+
+    /* ✅ Fix paragraphs stacking in text section */
+    .character-section:not(:has(img)) {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .character-section p {
+      margin: 10px 0;
+    }
+    
+    .character-section:last-child {
+      max-width: 600px;
+      padding: 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Nav and Search -->
+  <div class="top-bar">
+    <div class="logo-container">
+      <img src="https://github.com/BTTTESTER/EDEN/blob/main/Logo.png?raw=true" alt="ERG Logo" />
+    </div>
+    <div class="wiki-title">Edens Ritter Grenze Characters</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="Characters.html">Characters</a>
+    </div>
+    <div class="search-icon-container">
+      <img src="https://github.com/BTTTESTER/EDEN/blob/main/Magnify.png?raw=true" alt="Search" class="search-icon" />
+    </div>
+  </div>
+
+  <!-- Header that hides on scroll -->
+  <header id="mainHeader">
+    <h1>Edens Ritter Grenze<br>Characters</h1>
+  </header>
+
+  <!-- Floating Search Box -->
+  <div class="floating-search" id="floatingSearch">
+    <input type="text" placeholder="Search Not Available Yet" disabled />
+    <br />
+    <button class="close-btn" id="closeSearch">Close</button>
+  </div>
+
+  <!-- Body Content -->
+  <main id="color">
+    <h2>Permanent 5★ Divine Light Characters</h2>
+    <p>
+      The characters will be sorted based on their rarity (5 stars, 4 stars, 3 stars, 2 stars and 1 star), then availability (Permanent, Limited and Collab), then their type (Dominance, Magic, Holy, Divine Light and Evil Black), then by their weapon type (Sword, Dagger, Spear, Axe, Bow and Staff).
+    </p>
+  </main>
+
+  <section style="max-width: 1600px; margin: 20px auto; padding: 20px; background-color: transparent; color: white;">
+    <!-- Dropdown 1 -->
+    <button class="dropdown-btn full-width" id="Name_btn" style="color: yellow; font-size: 2.5em">Lucifer</button>
+    <div class="dropdown-content full-width" id="DD_description">
+      <p>Attribute:<span style="color: yellow;">Divine Light</span></p>
+	  <p>Rarity: ★★★★★</p>
+	  <p>Weapon Type: Spear</p>
+	  <p>Position: Vanguard</p>
+	  <p>Cost: 40</p>
+    </div>
+
+    <!-- Character image + description in two sections -->
+    <div class="character-block">
+      <!-- Left section -->
+<div class="IMG_container">
+        <img 
+          src="https://raw.githubusercontent.com/BTTTESTER/EDEN-IMG/refs/heads/main/Permanent_5_Lucifer.png" 
+          alt="Character Image" 
+          id="IMG"
+        />
+      </div>
+      <!-- Right section -->
+      <div id="description">
+        <p>
+          The "Power of Eden," passed down through the Church's "Holy Tree Sephirot," is what transformed Cecily into another form. She became a Lord-class Edens Ritter who entered into a direct contract with God. She freely manipulates powerful offensive magic derived from the ancient and forbidden sorcery known as the "Forbidden Knowledge," which is considered taboo by the Church.
+        </p>
+        <p>
+          The exhilaration, sense of omnipotence, and liberation brought on by her transformation make Cecily more assertive than usual — a notable shift from her normally quiet demeanor.
+        </p>
+        <p>
+          The "Power of Eden" is an overwhelming force for people, constantly testing and tempting those who come into contact with it. As a counterbalance to this, a sexual vulnerability known as a "Sacred Mark" appears. Cecily's "Sacred Mark" was on her large breasts, which was already prominent even before her transformation.
+        </p>
+        <p>
+          Her sensitivity has increased several times over, to the point where she can reach climax just from light fondling.
+        </p>
+        <p>
+          Furthermore, through defeat, violation, and training, her body transformed into one that reflexively lactates from her breasts, releasing breast milk upon climax. And it is said that the sensation from this lactation gives her pleasure many times stronger than a man’s ejaculation.
+        </p>
+        
+      </div>
+      
+    </div>
+
+    <!-- Dropdown 2 -->
+    <button class="dropdown-btn full-width">Defeat</button>
+    <div class="dropdown-content full-width" id="defeat-drop">
+      <img src="https://raw.githubusercontent.com/BTTTESTER/EDEN-IMG/refs/heads/main/Permanent_5_Lucifer.png" id="defeat-img">
+    </div>
+
+    <!-- Dropdown 3 -->
+    <button class="dropdown-btn full-width">Lvl 5 Skills</button>
+    <div class="dropdown-content full-width" id = "Skills">
+      <p>Details about level 5 skills go here.</p>
+	  <p>Details about level 5 skills go here.</p>
+	  <p>Details about level 5 skills go here.</p>
+	  <p>Details about level 5 skills go here.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-section footer-contact">
+      <h3>Contact me:</h3>
+      <p>Email: BoyTotoy69420@gmail.com</p>
+      <p>Twitter: I don't use one.</p>
+      <p>Facebook: I don't use one.</p>
+      <p>Youtube: I don't use one.</p>
+    </div>
+
+    <div class="footer-section footer-disclaimer">
+      <h3>Disclaimer:</h3>
+      <p>
+        This site is not affiliated with or officially endorsed by Waffle or the creators of Edens Ritter Grenze.
+        All characters, images, and trademarks belong to their respective owners. This is a fan-made resource intended for
+        informational and community purposes only. Viewer discretion is advised due to mature content.
+      </p>
+    </div>
+
+    <div class="footer-section footer-JPLink">
+      <h3>JP Unofficial Game Wiki:</h3>
+      <p>
+        <a href="https://edensgrenze.wikiru.jp/" style="color: #ccc; text-decoration: underline;">
+          Edens Ritter Grenze Unofficial Japanese Wiki
+        </a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Hide/show header on scroll
+    let lastScrollTop = 0;
+    const header = document.getElementById("mainHeader");
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        header.classList.add("hidden");
+      } else {
+        header.classList.remove("hidden");
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    // Floating search toggle
+    const searchIcon = document.querySelector('.search-icon');
+    const floatingSearch = document.getElementById('floatingSearch');
+    const closeSearch = document.getElementById('closeSearch');
+
+    searchIcon.addEventListener('click', () => {
+      floatingSearch.style.display = 'block';
+    });
+
+    closeSearch.addEventListener('click', () => {
+      floatingSearch.style.display = 'none';
+    });
+
+    // Dropdown toggle logic
+    document.querySelectorAll('.dropdown-btn.full-width').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const content = btn.nextElementSibling;
+        content.style.display = (content.style.display === "flex") ? "none" : "flex";
+      });
+    });
+  </script>
+</body>
+</html>
