@@ -281,6 +281,15 @@
     flex: 1 1 100%;
     max-width: 100%;
   }
+  
+  #Lucifer_btn {
+    display: block;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    text-align: center;
+    box-sizing: border-box;
+  }
+
 }
 
     /* Desktop Styles - Align floating search to the right */
@@ -363,6 +372,14 @@
       #defeat-drop {
         background-color: transparent;
       }
+	  
+	  #lu_description {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       text-align: center;
+      }
+	  
     }
     
     /* 💻 Laptop Styles */
@@ -517,7 +534,7 @@
 
   <!-- Body Content -->
   <main id="color">
-    <h2>Characters</h2>
+    <h2>Permanent 5★ Divine Light Characters</h2>
     <p>
       The characters will be sorted based on their rarity (5 stars, 4 stars, 3 stars, 2 stars and 1 star), then availability (Permanent, Limited and Collab), then their type (Dominance, Magic, Holy, Divine Light and Evil Black), then by their weapon type (Sword, Dagger, Spear, Axe, Bow and Staff).
     </p>
@@ -525,7 +542,7 @@
 
   <section style="max-width: 1600px; margin: 20px auto; padding: 20px; background-color: transparent; color: white;">
     <!-- Dropdown 1 -->
-    <button class="dropdown-btn full-width" id="Lucifer_btn">Lucifer</button>
+    <button class="dropdown-btn full-width" id="Lucifer_btn" style="color: yellow; font-size: 2.5em">Lucifer</button>
     <div class="dropdown-content full-width" id="lu_description">
       <p>This is content for Character 1. You can add text, images, or links here.</p>
     </div>
