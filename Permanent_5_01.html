@@ -23,6 +23,13 @@
       gap: 8px;                /* space between lines */
     }
 
+	#Skills2 {
+      display: flex;
+      flex-direction: column;  /* stack vertically */
+      align-items: flex-start; /* left-align text */
+      gap: 8px;                /* space between lines */
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -402,6 +409,10 @@
         display: block;
         margin-bottom: -10px;
       }
+
+	  #Skills, #Skills2 {
+        gap: 4px;
+      }
 	  
     }
     
@@ -635,7 +646,7 @@
     </div>
 	  
 	<button class="dropdown-btn full-width" style="font-size: 2.5em">Awakened Skills</button>
-    <div class="dropdown-content full-width" id = "Skills">
+    <div class="dropdown-content full-width" id = "Skills2">
       <p style="font-size: 20px; color: red;">Ultimate Skill - Majesty Luminous Judgment</p>
 	  <p>Details about level 5 skills go here.</p>
 	  <p>Details about level 5 skills go here.</p>
@@ -711,6 +722,7 @@
   </script>
 </body>
 </html>
+
 
 
 
