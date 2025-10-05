@@ -691,4 +691,43 @@
         </a>
       </p>
     </div>
+	</footer>
+	
+	<!-- Scripts -->
+	<script> // Hide/show header on scroll let lastScrollTop = 0;
+		const header = document.getElementById("mainHeader");
+		
+		window.addEventListener("scroll", () => {
+			const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+			if (currentScroll > lastScrollTop && currentScroll > 100) {
+				header.classList.add("hidden");
+			} else {
+				header.classList.remove("hidden"); }
+			lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+		});
+		
+		// Floating search toggle
+		const searchIcon = document.querySelector('.search-icon');
+		const floatingSearch = document.getElementById('floatingSearch');
+		const closeSearch = document.getElementById('closeSearch');
+		
+		searchIcon.addEventListener('click', () => {
+			floatingSearch.style.display = 'block';
+		});
+		
+		closeSearch.addEventListener('click', () => {
+			floatingSearch.style.display = 'none';
+		});
+		
+		// Dropdown toggle logic
+		document.querySelectorAll('.dropdown-btn.full-width').forEach(btn => {
+			btn.addEventListener('click', () => {
+				const content = btn.nextElementSibling;
+				content.style.display = (content.style.display === "flex") ? "none" : "flex";
+			});
+		});
+	</script>
+</body>
+</html>
+
 
