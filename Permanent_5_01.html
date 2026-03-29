@@ -210,6 +210,7 @@
     img {
       max-width: 100%;
       height: auto;
+      object-fit: contain; /* Prevents distortion */
     }
 
     /* Mobile Styles */
@@ -266,6 +267,11 @@
     width: 50px;
     height: 50px;
   }
+  
+  #IMG {
+        width: 100%;
+        height: auto;
+      }
 
   .wiki-title {
     display: none;
@@ -375,11 +381,9 @@
       text-align: center;
     }
 
-    .character-section img {
-      max-width: 900px;
-      max-height: 900px;
-      width: auto;
-      height: auto;
+    #IMG, #defeat-img {
+      max-width: 100%;
+      height: auto; /* Vital for aspect ratio */
       border-radius: 10px;
       display: block;
     }
@@ -424,19 +428,14 @@
     flex-wrap: nowrap; /* side-by-side */
   }
 
-  .character-section {
-    flex: 0 0 50%;
-  }
-
   #IMG {
-    height: 900px;
-    max-width: 900px;
+        max-height: 800px; /* Limits size without squishing */
+        width: auto;
   }
 
   #description {
-    margin-top: 0%;
-    margin-left: 17%;
-    text-align: left;
+        margin-left: 5%;
+        text-align: left;
   }
 
   #character-section {
@@ -444,15 +443,14 @@
   }
 
   .IMG_container {
-    display: block;
-    margin-left: -10%;
-    width: 600px;
+        flex: 0 0 50%;
+        display: flex;
+        justify-content: center;
   }
 
   #defeat-img {
-    height: 900px;
-    max-width: 900px;
-    margin-left: 0%;
+        max-height: 800px;
+        width: auto;
   }
 
   #defeat-drop {
