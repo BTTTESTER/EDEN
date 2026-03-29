@@ -16,18 +16,16 @@
       gap: 10px;
     }
 	
-	#Skills {
-      display: none;
-      flex-direction: column;  /* stack vertically */
-      align-items: flex-start; /* left-align text */
-      gap: 8px;                /* space between lines */
+	#defeat-drop {
+      display: flex;
+      justify-content: center;   /* horizontal center */
     }
-
-	#Skills2 {
+	
+    #Skills, Skills2 {
       display: none;
-      flex-direction: column;  /* stack vertically */
-      align-items: flex-start; /* left-align text */
-      gap: 8px;                /* space between lines */
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
     }
 
     body {
@@ -35,7 +33,7 @@
       padding: 0;
       background: url(https://github.com/BTTTESTER/EDEN/blob/main/Dark.png?raw=true) no-repeat center center fixed;
       background-size: cover;
-	  overflow-x: hidden;
+      overflow-x: hidden;
     }
 
     .top-bar {
@@ -210,132 +208,31 @@
     img {
       max-width: 100%;
       height: auto;
-      object-fit: contain; /* Prevents distortion */
+      object-fit: contain;
     }
 
-    /* Mobile Styles */
-    @media (max-width: 768px) {
-  header {
-    padding: 100px 20px 30px;
-  }
-
-  /* Character block stacked vertically on mobile */
-  .character-block {
-    flex-direction: column; /* stack image and text */
-    align-items: center;    /* center horizontally */
-    gap: 20px;              /* maintain spacing */
-  }
-
-  .character-section {
-    flex: none;             /* prevent stretching */
-    width: 100%;            /* full width container */
-    max-width: 400px;       /* optional max width */
-    text-align: center;     /* center image horizontally */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .character-section img {
-    width: 100%;            /* responsive width */
-    max-width: 400px;       /* optional limit */
-    height: auto;
-    border-radius: 10px;
-  }
-
-  .character-section:not(:has(img)) {
-    align-items: flex-start; /* keep text left-aligned */
-    text-align: left;
-    padding: 0 10px;
-  }
-
-  .character-section p {
-    margin: 10px 0;
-  }
-
-  .character-section:last-child {
-    max-width: 600px;       /* text width limit */
-    padding: 0 20px;
-  }
-
-  .top-bar {
-    padding: 1px 20px;
-  }
-
-  .logo-container {
-    width: 50px;
-    height: 50px;
-  }
-  
-  #IMG {
-        width: 100%;
-        height: auto;
-      }
-
-  .wiki-title {
-    display: none;
-  }
-
-  header h1 {
-    font-size: 2.5em;
-    padding-bottom: 20px;
-  }
-
-  .nav-links a {
-    font-size: 1.2em;
-  }
-
-  .floating-search {
-    top: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    right: auto;
-  }
-
-  .floating-search input {
-    width: 60vw;
-    max-width: none;
-  }
-
-  .footer {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
-  .footer-section {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-  
-  #Name_btn {
-    display: block;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    text-align: center;
-    box-sizing: border-box;
-  }
-  
-  .dropdown-content.full-width {
-    display: flex;
-    flex-direction: column; /* stack vertically */
-    gap: 10px; /* spacing between lines */
-  }
-
-}
-
-    /* Desktop Styles - Align floating search to the right */
-    @media (min-width: 769px) {
-      .floating-search {
-        top: 70px;
-        right: 20px;
-        left: auto;
-        transform: none;
-      }
+    /* ===== DROPDOWN DESCRIPTION ===== */
+    #DD_description {
+      /* Default: vertical (mobile-first) */
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      text-align: left;
     }
 
-    /* --- Character-specific styles --- */
+    #DD_description p {
+      margin: 0;
+      padding: 8px 0;
+      font-size: 1.1em;
+      width: 100%;
+      border-bottom: 1px solid #444;
+    }
+
+    #DD_description p:last-child {
+      border-bottom: none;
+    }
+
+    /* Dropdown button & content */
     .dropdown-btn.full-width, 
     .dropdown-content.full-width {
       width: 100vw;
@@ -370,7 +267,7 @@
       display: flex;
       gap: 20px;
       color: white;
-      flex-wrap: wrap; /* mobile default */
+      flex-wrap: wrap;
     }
 
     .character-section {
@@ -383,171 +280,141 @@
 
     #IMG {
       max-width: 100%;
-      height: auto; /* Vital for aspect ratio */
+      height: auto;
       border-radius: 10px;
       display: block;
     }
     
     #defeat-img {
       max-width: 800px;
-      height: auto
+      height: auto;
       border-radius: 10px;
       display: block;
+	  margin: 0 auto;
     }
 
-    /* Phone size */
-    @media only screen and (max-width: 900px) {
-      .character-block {
-        flex-wrap: nowrap; /* no stacking */
-      }
-      .character-section {
-        flex: 0 0 50%;
-      }
-
-      #IMG {
-        width: 400px;
-      }
-      #defeat-drop {
-        background-color: transparent;
-      }
-	  
-	    #DD_description {
-        display: flex;
+    /* ===== DESKTOP: DD_description goes horizontal (≥769px) ===== */
+    @media (min-width: 769px) {
+      #DD_description {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
         text-align: center;
+        gap: 20px 40px;
       }
 
-      #DD_description p{
-        display: block;
-        margin-bottom: -10px;
-      }
-
-	    #Skills p,
-      #Skills2 p, 
-	    #Notice {
-        margin: 0px 0;
-      }
-	  
-    }
-    
-    /* 💻 Laptop Styles */
-@media (min-width: 1024px) and (max-width: 1919px) {
-  .character-block {
-    flex-wrap: nowrap; /* side-by-side */
-  }
-
-  #IMG {
-        max-height: 800px; /* Limits size without squishing */
+      #DD_description p {
         width: auto;
-  }
-
-  #description {
-        margin-left: 5%;
-        text-align: left;
-  }
-
-  #character-section {
-    display: flex;
-  }
-
-  .IMG_container {
-        flex: 0 0 50%;
-        display: flex;
-        justify-content: center;
-  }
-
-  #defeat-img {
-        max-height: 700px;
-        max-width: 700px;
-        margin-left: 0%;
-  }
-
-  #defeat-drop {
-    background-color: transparent;
-  }
-
-  #Name_btn {
-    text-align: center;
-  }
-
-  #DD_description {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-  }
-  
-  .dropdown-content.full-width {
-    flex-direction: row; /* side by side */
-    justify-content: center;
-    flex-wrap: wrap; /* wrap to next line if too long */
-    gap: 30px; /* wider spacing */
-  }
-
-  .dropdown-content.full-width p {
-    margin: 0; /* remove top/bottom margins */
-  }
-
-  
-}
-
-    @media (min-width: 1920px) and (max-width: 2560px){
-      .character-block {
-        flex-wrap: nowrap; /* no stacking */
-      }
-      .character-section {
-        flex: 0 0 50%;
+        border-bottom: none;
+        padding: 8px 0;
       }
 
-      #IMG {
-        height: 800px;
-        max-width: 800px;
-      }
+      .floating-search { top: 70px; right: 20px; left: auto; transform: none; }
+    }
 
-      #description {
-        margin-top: 0%;
-        margin-left: 17%;
-        text-align: left;
-        font-size: 21px;
-      }
-
-      #character-section {
-        display: flex;
-      }
-
-      .IMG_container {
-         display: block;
-        margin-left: -20%;
-        width: 900px;
+    /* Mobile Styles (≤768px) */
+    @media (max-width: 768px) {
+      header { padding: 100px 20px 30px; }
+      
+      .character-block { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px; 
       }
 
       #defeat-img {
-        height: 800px;
-        max-width: 800px;
-        margin-left: 0%;
-
+        max-width: 100%;
       }
-      #defeat-drop {
-        background-color: transparent;
+      
+      .character-section { 
+        flex: none; 
+        width: 100%; 
+        max-width: 400px; 
+        text-align: center; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: flex-start; 
+        align-items: center; 
       }
-
-      #Name_btn {
-        text-align: center;
+      
+      .character-section img { 
+        width: 100%; 
+        max-width: 400px; 
+        height: auto; 
+        border-radius: 10px; 
       }
-      #DD_description {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        text-align: center;
+      
+      .character-section:not(:has(img)) { 
+        align-items: flex-start; 
+        text-align: left; 
+        padding: 0 10px; 
       }
-
-      #Skills p,
-      #Skills2 p, 
-	    #Notice {
-        margin: 0px 0;
-      }
+      
+      .character-section p { margin: 10px 0; }
+      .character-section:last-child { max-width: 600px; padding: 0 20px; }
+      .top-bar { padding: 1px 20px; }
+      .logo-container { width: 50px; height: 50px; }
+      #IMG { width: 100%; height: auto; }
+      .wiki-title { display: none; }
+      header h1 { font-size: 2.5em; padding-bottom: 20px; }
+      .nav-links a { font-size: 1.2em; }
+      .floating-search { top: 70px; left: 50%; transform: translateX(-50%); right: auto; }
+      .floating-search input { width: 60vw; }
+      .footer { flex-direction: column; text-align: center; align-items: center; }
+      .footer-section { flex: 1 1 100%; max-width: 100%; }
+      #Name_btn { display: block; width: 100vw; margin-left: calc(-50vw + 50%); text-align: center; box-sizing: border-box; }
     }
 
-    /* ✅ Fix paragraphs stacking in text section */
+    /* Tablet (769px - 1024px) */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      #DD_description {
+        gap: 15px;
+        justify-content: center;
+      }
+      
+      #DD_description p {
+        font-size: 0.95em;
+      }
+    
+      #defeat-drop {
+        display: flex;
+        justify-content: center;
+      }
+      #defeat-img {
+        max-width: 100%;
+      }
+	}
+
+    @media only screen and (max-width: 900px) {
+      .character-block { flex-wrap: nowrap; }
+      .character-section { flex: 0 0 50%; }
+      #IMG { width: 400px; }
+      #defeat-drop { background-color: transparent; }
+      #Skills p, #Skills2 p, #Notice { margin: 10px 0; }
+    }
+    
+    @media (min-width: 1024px) and (max-width: 1919px) {
+      .character-block { flex-wrap: nowrap; }
+      #IMG { max-height: 800px; width: auto; }
+      #description { margin-left: 5%; text-align: left; }
+      .IMG_container { flex: 0 0 50%; display: flex; justify-content: center; }
+      #defeat-img { max-height: 700px; max-width: 700px; margin-left: 0 auto; }
+      #defeat-drop { background-color: transparent; }
+      #Name_btn { text-align: center; }
+    }
+
+    @media (min-width: 1920px) and (max-width: 2560px) {
+      .character-block { flex-wrap: nowrap; }
+      .character-section { flex: 0 0 50%; }
+      #IMG { height: 800px; max-width: 800px; }
+      #description { margin-top: 0%; margin-left: 17%; text-align: left; font-size: 21px; }
+      .IMG_container { display: block; margin-left: -20%; width: 900px; }
+      #defeat-img { height: 800px; max-width: 800px; margin-left: 0%; }
+      #defeat-drop { background-color: transparent; }
+      #Name_btn { text-align: center; }
+      #Skills p, #Skills2 p, #Notice { margin: 5px 0; }
+    }
+
     .character-section:not(:has(img)) {
       display: flex;
       flex-direction: column;
@@ -567,7 +434,6 @@
   </style>
 </head>
 <body>
-  <!-- Fixed Nav and Search -->
   <div class="top-bar">
     <div class="logo-container">
       <img src="https://github.com/BTTTESTER/EDEN/blob/main/Logo.png?raw=true" alt="ERG Logo" />
@@ -582,19 +448,16 @@
     </div>
   </div>
 
-  <!-- Header that hides on scroll -->
   <header id="mainHeader">
     <h1>Edens Ritter Grenze<br>Characters</h1>
   </header>
 
-  <!-- Floating Search Box -->
   <div class="floating-search" id="floatingSearch">
     <input type="text" placeholder="Search Not Available Yet" disabled />
     <br />
     <button class="close-btn" id="closeSearch">Close</button>
   </div>
 
-  <!-- Body Content -->
   <main id="color">
     <h2>Permanent 5★ <span style="color: yellow;">Divine Light</span> Characters</h2>
     <p>
@@ -606,102 +469,82 @@
     <!-- Dropdown 1 -->
     <button class="dropdown-btn full-width" id="Name_btn" style="color: yellow; font-size: 2.5em">Ritter Lucifer</button>
     <div class="dropdown-content full-width" id="DD_description">
-      <p>Attribute:<span style="color: yellow;">Divine Light</span></p>
-	  <p>Rarity: ★★★★★</p>
-	  <p>Weapon Type: Spear</p>
-	  <p>Position: Vanguard</p>
-	  <p>Cost: 40</p>
+      <p>Attribute: <span style="color: yellow;">Divine Light</span></p>
+      <p>Rarity: ★★★★★</p>
+      <p>Weapon Type: Spear</p>
+      <p>Position: Vanguard</p>
+      <p>Cost: 40</p>
     </div>
 
-    <!-- Character image + description in two sections -->
     <div class="character-block">
-      <!-- Left section -->
-<div class="IMG_container">
-        <img 
-          src="https://raw.githubusercontent.com/BTTTESTER/EDEN-IMG/refs/heads/main/Permanent_5_RitterLucifer.png" 
-          alt="Character Image" 
-          id="IMG"
-        />
+      <div class="IMG_container">
+        <img src="https://raw.githubusercontent.com/BTTTESTER/EDEN-IMG/refs/heads/main/Permanent_5_RitterLucifer.png" alt="Character Image" id="IMG" />
       </div>
-      <!-- Right section -->
       <div id="description">
-        <p>
-          The "Power of Eden," passed down through the Church's "Holy Tree Sephirot," is what transformed Cecily into another form. She became a Lord-class Edens Ritter who entered into a direct contract with God. She freely manipulates powerful offensive magic derived from the ancient and forbidden sorcery known as the "Forbidden Knowledge," which is considered taboo by the Church.
-        </p>
-        <p>
-          The exhilaration, sense of omnipotence, and liberation brought on by her transformation make Cecily more assertive than usual, a notable shift from her normally quiet demeanor.
-        </p>
-        <p>
-          The "Power of Eden" is an overwhelming force for people, constantly testing and tempting those who come into contact with it. As a counterbalance to this, a sexual vulnerability known as a "Sacred Mark" appears. Cecily's "Sacred Mark" was on her large breasts, which was already prominent even before her transformation.
-        </p>
-        <p>
-          Her sensitivity has increased several times over, to the point where she can reach climax just from light fondling.
-        </p>
-        <p>
-          Furthermore, through defeat, violation, and training, her body transformed into one that reflexively lactates from her breasts, releasing breast milk upon climax. And it is said that the sensation from this lactation gives her pleasure many times stronger than a man’s ejaculation.
-        </p>
-        
-      </div>
-      
+        <p>The "Power of Eden," passed down through the Church's "Holy Tree Sephirot," is what transformed Cecily into another form. She became a Lord-class Edens Ritter who entered into a direct contract with God. She freely manipulates powerful offensive magic derived from the ancient and forbidden sorcery known as the "Forbidden Knowledge," which is considered taboo by the Church.</p>
+        <p>The exhilaration, sense of omnipotence, and liberation brought on by her transformation make Cecily more assertive than usual, a notable shift from her normally quiet demeanor.</p>
+        <p>The "Power of Eden" is an overwhelming force for people, constantly testing and tempting those who come into contact with it. As a counterbalance to this, a sexual vulnerability known as a "Sacred Mark" appears. Cecily's "Sacred Mark" was on her large breasts, which was already prominent even before her transformation.</p>
+		<p>Her sensitivity has increased several times over, to the point where she can reach climax just from light fondling.</p>
+		<p>Furthermore, through defeat, violation, and training, her body transformed into one that reflexively lactates from her breasts, releasing breast milk upon climax. And it is said that the sensation from this lactation gives her pleasure many times stronger than a man’s ejaculation.</p>
+	  </div>
     </div>
 
     <!-- Dropdown 2 -->
     <button class="dropdown-btn full-width" style="font-size: 2.0em">Defeat</button>
     <div class="dropdown-content full-width" id="defeat-drop">
-      <img src="https://raw.githubusercontent.com/BTTTESTER/EDEN-IMG/refs/heads/main/Permanent_5_RitterLucifer_Def.png" id="defeat-img">
+      <img src="https://raw.githubusercontent.com/BTTTESTER/EDEN-IMG/refs/heads/main/Permanent_5_RitterLucifer_Def.png" id="defeat-img" alt="Defeat image">
     </div>
 
     <!-- Dropdown 3 -->
     <button class="dropdown-btn full-width" style="font-size: 2.0em">Lvl 5 Skills</button>
-    <div class="dropdown-content full-width" id = "Skills">
+    <div class="dropdown-content full-width" id="Skills">
       <p style="font-size: 27px; color: red;">Ultimate Skill - Majesty Luminous Judgment</p>
-	  <p style="color: red;">Deals 410% damage to enemies in a vast area ahead.</p>
-	  <p> </p>
-	  <p style="font-size: 27px; color: blue;">Skill - Prayer of Sephirot</p>
-	  <p style="color: blue;">Heals the HP of surrounding allies by 20%.</p>
-	  <p> </p>
-	  <p> </p>
-	  <p style="font-size: 27px">Abilities</p>
-	  <p> </p>
-	  <p style="font-size: 27px">[All] [Divine Light] Attribute ATK:</p>
-		<p> Increases the ATK and DEF of all allies with the [Divine Light] attribute by 2%.</p>
-		<p> </p>
-	  <p style="font-size: 27px">[All] DEF Up (Small):</p>
-		<p> Increases the DEF of all allies by 2%.</p>
-		<p> </p>
-	  <p style="font-size: 27px">[Self] ATK, DEF Up (Small):</p>
-		<p> Increases own ATK and DEF by 3%.</p>
-		<p> </p>
-	  <p style="font-size: 27px">Sub Formation:</p>
-		<p> Increases the HP of all allies with the [Divine Light] attribute by 600, and ATK of all Spear-type allies by 120.</p>
+      <p style="color: red;">Deals 410% damage to enemies in a vast area ahead.</p>
+      <p> </p>
+      <p style="font-size: 27px; color: cyan;">Skill - Prayer of Sephirot</p>
+      <p style="color: cyan;">Heals the HP of surrounding allies by 20%.</p>
+      <p> </p>
+      <p> </p>
+      <p style="font-size: 27px">Abilities</p>
+      <p> </p>
+      <p style="font-size: 27px">[All] [Divine Light] Attribute ATK:</p>
+      <p> Increases the ATK and DEF of all allies with the [Divine Light] attribute by 2%.</p>
+      <p> </p>
+      <p style="font-size: 27px">[All] DEF Up (Small):</p>
+      <p> Increases the DEF of all allies by 2%.</p>
+      <p> </p>
+      <p style="font-size: 27px">[Self] ATK, DEF Up (Small):</p>
+      <p> Increases own ATK and DEF by 3%.</p>
+      <p> </p>
+      <p style="font-size: 27px">Sub Formation:</p>
+      <p> Increases the HP of all allies with the [Divine Light] attribute by 600, and ATK of all Spear-type allies by 120.</p>
     </div>
-	  
-	<button class="dropdown-btn full-width" style="font-size: 2.0em">Awakened Skills</button>
-    <div class="dropdown-content full-width" id = "Skills2">
+      
+    <button class="dropdown-btn full-width" style="font-size: 2.0em">Awakened Skills</button>
+    <div class="dropdown-content full-width" id="Skills2">
       <p style="font-size: 27px; color: red;">Ultimate Skill - Majesty Luminous Judgment</p>
-	  <p style="color: red;">Deals 500% damage to enemies in a vast area ahead, with a 125% chance to inflict ''Constraint'' and ''Freeze'' for 5 seconds. For 10 seconds, increases the ATK and Critical Damage of all allies by 75%, and increases Ultimate Damage by 750%. If a Critical Hit occurs with this Ultimate, the damage is multiplied by 6.</p>
-	  <p> </p>
-	  <p style="font-size: 27px; color: blue;">Skill - Prayer of Sephirot</p>
-	  <p style="color: blue;">Heals the HP of surrounding allies by 20%, grants 'HP Regeneration' for 10 seconds, and increases all status ailment resistance by 20% (Except for special status ailments).</p>
-	  <p> </p>
-	  <p> </p>
-	  <p style="font-size: 27px">Abilities</p>
-	  <p> </p>
-	  <p style="font-size: 27px">Great Tree's Guidance:</p>
-		<p> Increases the ATK, DEF, and Final Damage of all allies with the [Divine Light] attribute by 5%.</p>
-		<p> </p>
-	  <p style="font-size: 27px">Miracle of Prayer:</p>
-		<p> Increases the DEF, Normal Attack, and Critical Damage of all allies by 10%.</p>
-		<p> </p>
-	  <p style="font-size: 27px">Divine Protection:</p>
-		<p> Increases the ATK, DEF, and the accuracy of ''Constraint'' and ''Freeze'' effects of all allies by 15%.</p>
-		<p> </p>
-	  <p style="font-size: 27px">Sub Formation:</p>
-		<p> Increases the HP of all allies with the [Divine Light] attribute by 600, and ATK of all Spear-type allies by 120.</p>
+      <p style="color: red;">Deals 500% damage to enemies in a vast area ahead, with a 125% chance to inflict ''Constraint'' and ''Freeze'' for 5 seconds. For 10 seconds, increases the ATK and Critical Damage of all allies by 75%, and increases Ultimate Damage by 750%. If a Critical Hit occurs with this Ultimate, the damage is multiplied by 6.</p>
+      <p> </p>
+      <p style="font-size: 27px; color: cyan;">Skill - Prayer of Sephirot</p>
+      <p style="color: cyan;">Heals the HP of surrounding allies by 20%, grants 'HP Regeneration' for 10 seconds, and increases all status ailment resistance by 20% (Except for special status ailments).</p>
+      <p> </p>
+      <p> </p>
+      <p style="font-size: 27px">Abilities</p>
+      <p> </p>
+      <p style="font-size: 27px">Great Tree's Guidance:</p>
+      <p> Increases the ATK, DEF, and Final Damage of all allies with the [Divine Light] attribute by 5%.</p>
+      <p> </p>
+      <p style="font-size: 27px">Miracle of Prayer:</p>
+      <p> Increases the DEF, Normal Attack, and Critical Damage of all allies by 10%.</p>
+      <p> </p>
+      <p style="font-size: 27px">Divine Protection:</p>
+      <p> Increases the ATK, DEF, and the accuracy of ''Constraint'' and ''Freeze'' effects of all allies by 15%.</p>
+      <p> </p>
+      <p style="font-size: 27px">Sub Formation:</p>
+      <p> Increases the HP of all allies with the [Divine Light] attribute by 600, and ATK of all Spear-type allies by 120.</p>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-section footer-contact">
       <h3>Contact me:</h3>
@@ -710,62 +553,73 @@
       <p>Facebook: I don't use one.</p>
       <p>Youtube: I don't use one.</p>
     </div>
-
     <div class="footer-section footer-disclaimer">
       <h3>Disclaimer:</h3>
-      <p>
-        This site is not affiliated with or officially endorsed by Waffle or the creators of Edens Ritter Grenze.
-        All characters, images, and trademarks belong to their respective owners. This is a fan-made resource intended for
-        informational and community purposes only. Viewer discretion is advised due to mature content.
-      </p>
+      <p>This site is not affiliated with or officially endorsed by Waffle or the creators of Edens Ritter Grenze. All characters, images, and trademarks belong to their respective owners. This is a fan-made resource intended for informational and community purposes only. Viewer discretion is advised due to mature content.</p>
     </div>
-
     <div class="footer-section footer-JPLink">
       <h3>JP Unofficial Game Wiki:</h3>
-      <p>
-        <a href="https://edensgrenze.wikiru.jp/" style="color: #ccc; text-decoration: underline;">
-          Edens Ritter Grenze Unofficial Japanese Wiki
-        </a>
-      </p>
+      <p><a href="https://edensgrenze.wikiru.jp/" style="color: #ccc; text-decoration: underline;">Edens Ritter Grenze Unofficial Japanese Wiki</a></p>
     </div>
-	</footer>
-	
-	<!-- Scripts -->
-	<script> // Hide/show header on scroll
-	let lastScrollTop = 0;
-		const header = document.getElementById("mainHeader");
-		
-		window.addEventListener("scroll", () => {
-			const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-			if (currentScroll > lastScrollTop && currentScroll > 100) {
-				header.classList.add("hidden");
-			} else {
-				header.classList.remove("hidden"); }
-			lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-		});
-		
-		// Floating search toggle
-		const searchIcon = document.querySelector('.search-icon');
-		const floatingSearch = document.getElementById('floatingSearch');
-		const closeSearch = document.getElementById('closeSearch');
-		
-		searchIcon.addEventListener('click', () => {
-			floatingSearch.style.display = 'block';
-		});
-		
-		closeSearch.addEventListener('click', () => {
-			floatingSearch.style.display = 'none';
-		});
-		
-		// Dropdown toggle logic
-		document.querySelectorAll('.dropdown-btn.full-width').forEach(btn => {
-			btn.addEventListener('click', () => {
-				const content = btn.nextElementSibling;
-				content.style.display = (content.style.display === "flex") ? "none" : "flex";
-			});
-		});
-	</script>
+  </footer>
+
+  <script>
+    // Hide/show header on scroll
+    let lastScrollTop = 0;
+    const header = document.getElementById("mainHeader");
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      if (currentScroll > lastScrollTop && currentScroll > 100) {
+        header.classList.add("hidden");
+      } else {
+        header.classList.remove("hidden");
+      }
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
+    // Floating search toggle
+    const searchIcon = document.querySelector('.search-icon');
+    const floatingSearch = document.getElementById('floatingSearch');
+    const closeSearch = document.getElementById('closeSearch');
+    searchIcon.addEventListener('click', () => { floatingSearch.style.display = 'block'; });
+    closeSearch.addEventListener('click', () => { floatingSearch.style.display = 'none'; });
+
+    // ===== DROPDOWN TOGGLE LOGIC =====
+    const dropdownBtns = document.querySelectorAll('.dropdown-btn.full-width');
+    
+    dropdownBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const content = this.nextElementSibling;
+        if (content && content.classList.contains('dropdown-content')) {
+          // Close all other open dropdowns first
+          document.querySelectorAll('.dropdown-content.full-width').forEach(dd => {
+            if (dd !== content) dd.style.display = 'none';
+          });
+          // Toggle this one — use flex for DD_description, block for all others
+          const isOpen = content.style.display === 'flex' || content.style.display === 'block';
+          if (isOpen) {
+            content.style.display = 'none';
+          } else {
+            content.style.display = content.id === 'DD_description' ? 'flex' : 'block';
+          }
+        }
+      });
+    });
+
+    // Click outside to close all dropdowns
+    window.addEventListener('click', function() {
+      document.querySelectorAll('.dropdown-content.full-width').forEach(dd => {
+        dd.style.display = 'none';
+      });
+    });
+
+    // Ensure all dropdowns are closed on page load
+    window.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.dropdown-content.full-width').forEach(dd => {
+        dd.style.display = 'none';
+      });
+    });
+  </script>
 </body>
 </html>
-
-
